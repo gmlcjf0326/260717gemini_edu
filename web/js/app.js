@@ -99,9 +99,10 @@
   /* ---------- 테마 · 글자 크기 ---------- */
   function applyTheme(t) {
     document.documentElement.setAttribute('data-theme', t);
-    store.set('edu-theme', t);
+    store.set('edu-theme-v2', t);
   }
-  applyTheme(store.get('edu-theme', (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'));
+  // 기본은 항상 화이트 배경(라이트 테마) — 시스템 다크 모드를 따라가지 않음. 🌓 버튼으로만 전환.
+  applyTheme(store.get('edu-theme-v2', 'light'));
   $('#btn-theme').addEventListener('click', function () {
     applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   });
