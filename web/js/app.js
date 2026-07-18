@@ -13,10 +13,12 @@
 
   var CATS = {
     start:    { label: '시작하기',        color: 'var(--accent)' },
-    lesson1:  { label: '1차시 · AI와 첫 만남',        color: 'var(--l1)' },
-    lesson2:  { label: '2차시 · 프롬프트의 기술',     color: 'var(--l2)' },
-    lesson3:  { label: '3차시 · AI 거짓말 탐정',      color: 'var(--l3)' },
-    lesson4:  { label: '4차시 · AI와 함께 살아가기',  color: 'var(--l4)' },
+    lesson1:  { label: '1탄 1차시 · AI와 첫 만남',        color: 'var(--l1)' },
+    lesson2:  { label: '1탄 2차시 · 프롬프트의 기술',     color: 'var(--l2)' },
+    lesson3:  { label: '1탄 3차시 · AI 거짓말 탐정',      color: 'var(--l3)' },
+    lesson4:  { label: '1탄 4차시 · AI와 함께 살아가기',  color: 'var(--l4)' },
+    vol2:     { label: '2탄 · AI 창작 공방',              color: 'var(--accent2)' },
+    vol3:     { label: '3탄 · AI 프로젝트 스튜디오',      color: 'var(--l4)' },
     kit:      { label: '교사 키트',       color: 'var(--accent2)' },
     ext:      { label: '확장',            color: 'var(--l3)' },
     appendix: { label: '부록 · 근거 자료', color: 'var(--text-dim)' }
@@ -24,7 +26,7 @@
 
   var LESSONS = [
     {
-      id: 1, doc: 'plan1', ws: 'ws1', cls: 'c1',
+      vol: 1, id: 1, doc: 'plan1', ws: 'ws1', cls: 'c1',
       title: 'AI와 첫 만남 — 인공지능은 어떻게 말할까?',
       q: '같은 질문에 왜 매번 다른 답이 나올까?',
       desc: '"다음 단어 맞히기" 게임으로 확률 생성 원리를 몸으로 익히고, 게스트 모드로 첫 대화를 나눕니다. 개인정보 수칙을 세웁니다.',
@@ -39,7 +41,7 @@
       ]
     },
     {
-      id: 2, doc: 'plan2', ws: 'ws2', cls: 'c2',
+      vol: 1, id: 2, doc: 'plan2', ws: 'ws2', cls: 'c2',
       title: '프롬프트의 기술 — AI에게 잘 부탁하는 법',
       q: '어떻게 부탁해야 원하는 답이 나올까?',
       desc: '레시피 4요소(역할–상황–요청–형식)로 A/B 실험을 하고, "3줄로 줄여 줘" 같은 후속 지시(멀티턴)를 연습합니다.',
@@ -56,7 +58,7 @@
       ]
     },
     {
-      id: 3, doc: 'plan3', ws: 'ws3', cls: 'c3',
+      vol: 1, id: 3, doc: 'plan3', ws: 'ws3', cls: 'c3',
       title: 'AI 거짓말 탐정 — 환각 수사대',
       q: 'AI가 한 말은 다 사실일까?',
       desc: '세종대왕 맥북프로 사건을 직접 수사하고(환각 재현도, AI의 부인도 모두 수사 성공!), 검증 3단계 습관을 만듭니다.',
@@ -71,7 +73,7 @@
       ]
     },
     {
-      id: 4, doc: 'plan4', ws: 'ws4', cls: 'c4',
+      vol: 1, id: 4, doc: 'plan4', ws: 'ws4', cls: 'c4',
       title: 'AI와 함께 살아가기 — 정직한 사용 선언',
       q: 'AI가 다 써 준 숙제는 내 숙제일까?',
       desc: '경계선 OX 토론으로 윤리 감각을 세우고, AI 초안을 내 문장으로 고쳐 쓰며 "나의 AI 사용 선언문"을 완성합니다.',
@@ -83,6 +85,125 @@
         { t: 750,  label: '실습2-2 — 내 문장으로 고쳐 쓰기' },
         { t: 960,  label: '정리1 — 복습 미니 퀴즈' },
         { t: 1080, label: '정리2 — 선언문 낭독·게시' }
+      ]
+    },
+    {
+      vol: 2, id: 1, doc: 'v2p1', ws: 'v2w1', cls: 'c1',
+      title: '이야기 공장 — 장르 변신 스토리',
+      q: '내 아이디어로 이야기를 만들 수 있을까?',
+      out: '나만의 미니 이야기',
+      desc: '주인공·장소·사건을 내가 정하고, AI로 다섯 문장 이야기를 뽑은 뒤 장르를 바꿔 봅니다. 마지막엔 내 문장으로 고쳐 완성합니다.',
+      phases: [
+        { t: 0,    label: '도입 — 오늘부터 제작자' },
+        { t: 180,  label: '개념 — 창작 3원칙' },
+        { t: 360,  label: '실습① 이야기 씨앗 만들기' },
+        { t: 480,  label: '실습② 프롬프트 조립·생성' },
+        { t: 660,  label: '실습③ 장르 변신 멀티턴' },
+        { t: 840,  label: '실습④ 옮겨 적고 고쳐 쓰기' },
+        { t: 960,  label: '정리 — 제목·표시·공유' }
+      ]
+    },
+    {
+      vol: 2, id: 2, doc: 'v2p2', ws: 'v2w2', cls: 'c2',
+      title: '캐릭터 공방 — 나만의 캐릭터 설계',
+      q: '매력적인 캐릭터는 어떻게 만들까?',
+      out: '캐릭터 프로필 카드',
+      desc: '창작명·성격·특기·약점·말버릇을 내가 설계하고, AI로 살을 붙인 뒤 캐릭터와 인터뷰까지 해 봅니다.',
+      phases: [
+        { t: 0,    label: '도입 — 인물을 만든다' },
+        { t: 180,  label: '개념 — 입체적 캐릭터(약점!)' },
+        { t: 360,  label: '실습① 기본 설정 5칸' },
+        { t: 540,  label: '실습② AI로 살 붙이기' },
+        { t: 720,  label: '실습③ 캐릭터 인터뷰' },
+        { t: 870,  label: '실습④ 프로필 카드 완성' },
+        { t: 990,  label: '정리 — 캐릭터 소개' }
+      ]
+    },
+    {
+      vol: 2, id: 3, doc: 'v2p3', ws: 'v2w3', cls: 'c3',
+      title: '학급 광고 기획사 — 마음을 움직이는 문구',
+      q: '말로 사람의 마음을 움직일 수 있을까?',
+      out: '캠페인 문구 세트',
+      desc: '급식 잔반 줄이기 등 학급 공익 소재로 A/B 실험을 하며 헤드라인·슬로건·한 줄 설명 세트를 만듭니다.',
+      phases: [
+        { t: 0,    label: '도입 — 광고의 힘' },
+        { t: 180,  label: '개념 — 광고 3요소' },
+        { t: 360,  label: '실습① 소재·타깃·톤 정하기' },
+        { t: 480,  label: '실습② A/B 문구 실험' },
+        { t: 660,  label: '실습③ 다듬기 멀티턴' },
+        { t: 840,  label: '실습④ 세트 완성' },
+        { t: 990,  label: '정리 — 발표·활용 제안' }
+      ]
+    },
+    {
+      vol: 2, id: 4, doc: 'v2p4', ws: 'v2w4', cls: 'c4',
+      title: '퀴즈쇼 제작단 — 내가 만드는 문제',
+      q: 'AI가 만든 문제, 그대로 내도 될까?',
+      out: '검증 완료 퀴즈 3문항',
+      desc: 'AI로 퀴즈를 뽑고 검증 3단계로 직접 검수한 뒤(출제자의 책임!) 짝과 퀴즈 대결을 벌입니다.',
+      phases: [
+        { t: 0,    label: '도입 — 출제자의 책임' },
+        { t: 180,  label: '개념 — 검증 없이 출제 금지' },
+        { t: 360,  label: '실습① 주제 선택·퀴즈 생성' },
+        { t: 540,  label: '실습② 검증(교과서 대조)' },
+        { t: 720,  label: '실습③ 짝 퀴즈 대결' },
+        { t: 930,  label: '정리 — 2탄 수료식' }
+      ]
+    },
+    {
+      vol: 3, id: 1, doc: 'v3p1', ws: 'v3w1', cls: 'c1',
+      title: '기획 회의 — 무엇을 만들까?',
+      q: '우리 팀은 무엇을 만들까?',
+      out: '한 장 기획서',
+      desc: '팀을 짜고 역할을 나눈 뒤, 프로젝트 메뉴 5종에서 주제를 고르고 AI 브레인스토밍으로 기획서를 완성합니다.',
+      phases: [
+        { t: 0,    label: '도입 — 프로젝트 소개' },
+        { t: 150,  label: '팀 세팅·역할 배정' },
+        { t: 300,  label: '주제 선정(메뉴 5종)' },
+        { t: 480,  label: 'AI 브레인스토밍' },
+        { t: 780,  label: '기획서 작성' },
+        { t: 1080, label: '팀별 15초 공유·정리' }
+      ]
+    },
+    {
+      vol: 3, id: 2, doc: 'v3p2', ws: 'v3w2', cls: 'c2',
+      title: '제작 스프린트 — 초안 공장',
+      q: '좋은 재료는 어떻게 모을까?',
+      out: '파트별 초안 모음',
+      desc: '파트별로 프롬프트를 돌려 초안을 뽑고, "우리 기획에 맞나?"를 기준으로 재료를 고르고 조립을 시작합니다.',
+      phases: [
+        { t: 0,    label: '도입 — 기획서 리마인드' },
+        { t: 120,  label: '파트 분담 확인' },
+        { t: 240,  label: '초안 생성 스프린트' },
+        { t: 720,  label: '재료 선별·조립' },
+        { t: 1080, label: '중간 점검·정리' }
+      ]
+    },
+    {
+      vol: 3, id: 3, doc: 'v3p3', ws: 'v3w3', cls: 'c3',
+      title: '다듬기 공방 — 내 문장으로, 사실 확인까지',
+      q: 'AI 초안을 우리 작품으로 만들려면?',
+      out: '프로젝트 완성본',
+      desc: 'AI 문장을 팀의 문장으로 고쳐 쓰고, 검증 담당 주도로 팩트체크한 뒤 "AI와 함께 만들었어요"를 붙여 완성합니다.',
+      phases: [
+        { t: 0,    label: '도입 — 재료에서 요리로' },
+        { t: 120,  label: '퇴고 — 팀의 문장으로' },
+        { t: 540,  label: '팩트체크(검증 3단계)' },
+        { t: 840,  label: '정직한 표시·마감' },
+        { t: 1080, label: '발표 준비·정리' }
+      ]
+    },
+    {
+      vol: 3, id: 4, doc: 'v3p4', ws: 'v3w4', cls: 'c4',
+      title: '쇼케이스 — 발표와 회고',
+      q: '우리가 만든 것을 어떻게 보여 줄까?',
+      out: '팀 발표 + 회고 카드',
+      desc: '팀당 90초 쇼케이스로 작품을 발표하고, 칭찬 1+제안 1 피드백과 회고로 시리즈를 마무리합니다.',
+      phases: [
+        { t: 0,    label: '도입 — 발표 규칙·리허설' },
+        { t: 180,  label: '팀 발표(팀당 90초)' },
+        { t: 780,  label: '상호 피드백(칭찬 1+제안 1)' },
+        { t: 960,  label: '회고·시리즈 수료' }
       ]
     }
   ];
@@ -171,9 +292,10 @@
     var el = $('#content');
     var h = '';
     h += '<div class="home-hero"><h1>20분 만에 이해하는 AI</h1>' +
-      '<p>중학교 1학년 교실에서 <strong>제미나이(Gemini) 게스트 모드(로그인 없이 사용)</strong>만으로 진행하는 생성형 AI 리터러시 수업 패키지입니다. ' +
-      '준비(체크리스트)부터 수업(지도안·프롬프트 대본)과 평가(루브릭)까지, 이 교재 하나로 끝냅니다.</p>' +
-      '<div class="hero-tags"><span>20분 × 4회차</span><span>로그인 · 계정 수집 없음</span><span>1인 1기기 / 모둠 / 시연 3가지 운영</span><span>모든 차시 플랜 B 포함</span><span>문서 20종 수록</span></div></div>';
+      '<p>중학교 1학년 교실에서 <strong>제미나이(Gemini) 게스트 모드(로그인 없이 사용)</strong>만으로 진행하는 생성형 AI 수업 시리즈입니다. ' +
+      '1탄에서 AI를 다루는 기본기를 만들고, 2탄부터는 <strong>AI로 직접 만들어 봅니다</strong> — 이야기·캐릭터·광고·퀴즈, 그리고 팀 프로젝트 작품까지. ' +
+      '준비(체크리스트)부터 수업(지도안·프롬프트 대본)과 평가(루브릭)까지 이 교재 하나로 끝냅니다.</p>' +
+      '<div class="hero-tags"><span>3탄 시리즈 · 20분 × 12회차</span><span>매 차시 산출물 완성</span><span>로그인 · 계정 수집 없음</span><span>모든 차시 플랜 B 포함</span><span>문서 40종 수록</span></div></div>';
 
     h += '<section class="home-section"><h2>🚀 빠른 시작 — 수업이 내일이라면</h2><ol class="step-list">' +
       '<li><a href="#/doc/checklist">사전준비 체크리스트</a>의 D-1 항목부터 실행 — 학교 네트워크에서 시크릿 창으로 <b>게스트 접속 3회 테스트</b></li>' +
@@ -181,15 +303,25 @@
       '<li><a href="#/doc/snippets">프롬프트 스니펫</a>을 교사 기기에서 1회 사전 실행 — 결과 적절성 확인</li>' +
       '<li><a href="#/doc/ws1">1차시 학습지</a> 인쇄 — 게스트 모드는 기록이 저장되지 않으므로 <b>학습지가 곧 저장소</b></li></ol></section>';
 
-    h += '<section class="home-section"><h2>📚 4차시 한눈에 보기</h2><div class="card-grid">';
-    LESSONS.forEach(function (L) {
-      h += '<a class="card lesson-card ' + L.cls + '" href="#/doc/' + L.doc + '">' +
-        '<div class="card-kicker">' + L.id + '차시 · 20분</div>' +
-        '<h3>' + esc(L.title) + '</h3>' +
-        '<p><b>핵심 질문:</b> ' + esc(L.q) + '</p><p style="margin-top:6px">' + esc(L.desc) + '</p>' +
-        '<div class="card-links"><span>지도안</span><span>학습지</span><span>타이머 지원</span></div></a>';
+    var VOLS = [
+      { vol: 1, icon: '📚', title: '1탄 · AI 리터러시 기초', sub: '원리 → 프롬프트 → 검증 → 윤리. AI를 올바르게 다루는 기본기를 만듭니다.' },
+      { vol: 2, icon: '🎨', title: '2탄 · AI 창작 공방', sub: '매 차시 완성품 1개! 창작 3원칙(① 정하는 건 나 ② AI는 재료 공장 ③ 고쳐 써야 내 작품)으로 만들기를 시작합니다. <a href="#/doc/v2-overview">2탄 개요 →</a>' },
+      { vol: 3, icon: '🏗️', title: '3탄 · AI 프로젝트 스튜디오', sub: '모둠(4인)이 4차시 동안 하나의 작품을 기획 → 제작 → 다듬기 → 쇼케이스로 완성합니다. 학급 잡지·캠페인·텍스트 게임 등 <a href="#/doc/v3-overview">프로젝트 메뉴 5종 →</a>' }
+    ];
+    VOLS.forEach(function (V) {
+      h += '<section class="home-section"><h2>' + V.icon + ' ' + esc(V.title) + '</h2>' +
+        '<p style="color:var(--text-dim);margin:-6px 0 14px">' + V.sub + '</p><div class="card-grid">';
+      LESSONS.filter(function (L) { return L.vol === V.vol; }).forEach(function (L) {
+        h += '<a class="card lesson-card ' + L.cls + '" href="#/doc/' + L.doc + '">' +
+          '<div class="card-kicker">' + L.vol + '탄 ' + L.id + '차시 · 20분</div>' +
+          '<h3>' + esc(L.title) + '</h3>' +
+          '<p><b>핵심 질문:</b> ' + esc(L.q) + '</p>' +
+          (L.out ? '<p style="margin-top:6px"><b>산출물:</b> ' + esc(L.out) + '</p>' : '') +
+          '<p style="margin-top:6px">' + esc(L.desc) + '</p>' +
+          '<div class="card-links"><span>지도안</span><span>학습지</span><span>타이머 지원</span></div></a>';
+      });
+      h += '</div></section>';
     });
-    h += '</div></section>';
 
     h += '<section class="home-section"><h2>🧰 교사 키트</h2><div class="card-grid">';
     DOCS.filter(function (d) { return d.cat === 'kit'; }).forEach(function (d) {
@@ -227,9 +359,11 @@
   /* ---------- 문서 렌더 ---------- */
   var pendingQuery = null;
 
-  function docLessonOf(d) {
-    var m = /^lesson([1-4])$/.exec(d.cat);
-    return m ? Number(m[1]) : null;
+  function docLessonIdx(d) {
+    for (var i = 0; i < LESSONS.length; i++) {
+      if (LESSONS[i].doc === d.id || LESSONS[i].ws === d.id) return i;
+    }
+    return -1;
   }
 
   function renderDoc(id) {
@@ -239,7 +373,7 @@
     var head = '<header class="doc-head"><div class="crumb"><b>' + esc(CATS[d.cat].label) + '</b> · <span>' + esc(d.file) + '</span></div>' +
       '<div class="doc-actions">' +
       '<button class="btn primary" data-act="print">🖨 ' + (d.print ? '이 문서 인쇄 (배포용)' : '이 문서 인쇄') + '</button>' +
-      (docLessonOf(d) ? '<button class="btn" data-act="timer">⏱ ' + docLessonOf(d) + '차시 타이머 열기</button>' : '') +
+      (docLessonIdx(d) >= 0 ? '<button class="btn" data-act="timer">⏱ ' + LESSONS[docLessonIdx(d)].vol + '탄 ' + LESSONS[docLessonIdx(d)].id + '차시 타이머 열기</button>' : '') +
       (d.tasklist ? '<button class="btn" data-act="reset-tasks">↺ 체크 초기화</button>' : '') +
       '</div></header>';
     el.className = 'doc';
@@ -300,7 +434,7 @@
       var act = e.target.closest('[data-act]');
       if (!act) return;
       if (act.dataset.act === 'print') window.print();
-      if (act.dataset.act === 'timer') openTimer(docLessonOf(d));
+      if (act.dataset.act === 'timer') openTimer(docLessonIdx(d));
       if (act.dataset.act === 'reset-tasks') {
         store.set('edu-tasks-' + d.id, []);
         $$('#content .task-check').forEach(function (c) { c.checked = false; });
@@ -554,10 +688,10 @@
     $('#timer-start').textContent = '시작';
     timerRender();
   }
-  function openTimer(lessonId) {
+  function openTimer(idx) {
     timerEl.classList.remove('hidden', 'minimized');
-    if (lessonId && lessonId - 1 !== timer.lesson) {
-      timer.lesson = lessonId - 1;
+    if (typeof idx === 'number' && idx >= 0 && idx !== timer.lesson) {
+      timer.lesson = idx;
       $('#timer-lesson').value = String(timer.lesson);
       buildTrack(); timerReset();
     }
@@ -566,7 +700,7 @@
   (function initTimer() {
     var sel = $('#timer-lesson');
     sel.innerHTML = LESSONS.map(function (L, i) {
-      return '<option value="' + i + '">' + L.id + '차시 — ' + esc(L.title.split(' — ')[0]) + '</option>';
+      return '<option value="' + i + '">' + L.vol + '탄 ' + L.id + '차시 — ' + esc(L.title.split(' — ')[0]) + '</option>';
     }).join('');
     sel.addEventListener('change', function () {
       timer.lesson = Number(sel.value);
