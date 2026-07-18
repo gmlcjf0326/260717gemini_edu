@@ -16,6 +16,8 @@ const ROOT = path.join(__dirname, '..');
 
 // 문서 레지스트리: 사이드바 순서 그대로. cat은 내비게이션 그룹.
 const DOCS = [
+  { id: 'preface',     cat: 'ebook',   nav: '머리말',                file: 'ebook/00-머리말.md' },
+  { id: 'howto',       cat: 'ebook',   nav: '이 책의 사용법',        file: 'ebook/01-이-책의-사용법.md' },
   { id: 'readme',      cat: 'start',   nav: '패키지 안내',           file: 'README.md' },
   { id: 'overview',    cat: 'start',   nav: '교육과정 개요',         file: 'curriculum/00-교육과정-개요.md' },
   { id: 'plan1',       cat: 'lesson1', nav: '지도안',                file: 'curriculum/1차시-지도안-AI와-첫만남.md' },
@@ -59,6 +61,7 @@ const DOCS = [
   { id: 'ext-image',   cat: 'ext',     nav: '확장팩 — 이미지 생성 차시', file: 'extensions/확장팩-이미지-생성-차시.md' },
   { id: 'ext-club',    cat: 'ext',     nav: '심화활동·동아리 아이디어', file: 'extensions/심화활동-및-동아리-아이디어.md' },
   { id: 'research',    cat: 'appendix', nav: '제미나이 조사 정리',   file: 'appendix/제미나이-조사-정리.md' },
+  { id: 'wikiguide',   cat: 'ebook',   nav: '온라인 ebook 출시 가이드', file: 'ebook/99-위키독스-출시-가이드.md' },
 ];
 
 marked.setOptions({ gfm: true, breaks: false });

@@ -11,18 +11,93 @@
   var byFile = {};
   DOCS.forEach(function (d) { byFile[d.file] = d; });
 
-  var CATS = {
-    start:    { label: '시작하기',        color: 'var(--accent)' },
-    lesson1:  { label: '1탄 1차시 · AI와 첫 만남',        color: 'var(--l1)' },
-    lesson2:  { label: '1탄 2차시 · 프롬프트의 기술',     color: 'var(--l2)' },
-    lesson3:  { label: '1탄 3차시 · AI 거짓말 탐정',      color: 'var(--l3)' },
-    lesson4:  { label: '1탄 4차시 · AI와 함께 살아가기',  color: 'var(--l4)' },
-    vol2:     { label: '2탄 · AI 창작 공방',              color: 'var(--accent2)' },
-    vol3:     { label: '3탄 · AI 프로젝트 스튜디오',      color: 'var(--l4)' },
-    kit:      { label: '교사 키트',       color: 'var(--accent2)' },
-    ext:      { label: '확장',            color: 'var(--l3)' },
-    appendix: { label: '부록 · 근거 자료', color: 'var(--text-dim)' }
-  };
+  /* ---------- 책(ebook) 목차 — 위키독스식 부·절 구조 ---------- */
+  var BOOK = [
+    { part: '들어가며', num: '', color: 'var(--accent)', items: [
+      { id: 'preface', label: '머리말' },
+      { id: 'howto', label: '이 책의 사용법' }
+    ] },
+    { part: '제1부 수업을 열기 전에', num: '1', color: 'var(--accent)', items: [
+      { id: 'overview', label: '교육과정 개요' },
+      { id: 'checklist', label: '사전준비 체크리스트' },
+      { id: 'trouble', label: '트러블슈팅 가이드' },
+      { id: 'parents', label: '학부모 안내문' },
+      { id: 'poster', label: '안전수칙 포스터' }
+    ] },
+    { part: '제2부 1탄 · AI 리터러시 기초', num: '2', color: 'var(--l1)', items: [
+      { id: 'plan1', label: '1차시 지도안 — AI와 첫 만남' },
+      { id: 'ws1', label: '1차시 학습지' },
+      { id: 'plan2', label: '2차시 지도안 — 프롬프트의 기술' },
+      { id: 'ws2', label: '2차시 학습지' },
+      { id: 'plan3', label: '3차시 지도안 — AI 거짓말 탐정' },
+      { id: 'ws3', label: '3차시 학습지 (수사 보고서)' },
+      { id: 'plan4', label: '4차시 지도안 — AI와 함께 살아가기' },
+      { id: 'ws4', label: '4차시 학습지 (사용 선언문)' },
+      { id: 'snippets', label: '프롬프트 스니펫 (1탄)' },
+      { id: 'rubric', label: '평가 루브릭 (1탄)' }
+    ] },
+    { part: '제3부 2탄 · AI 창작 공방', num: '3', color: 'var(--accent2)', items: [
+      { id: 'v2-overview', label: '2탄 개요 — 창작 3원칙' },
+      { id: 'v2p1', label: '1차시 지도안 — 이야기 공장' },
+      { id: 'v2w1', label: '1차시 학습지' },
+      { id: 'v2p2', label: '2차시 지도안 — 캐릭터 공방' },
+      { id: 'v2w2', label: '2차시 학습지' },
+      { id: 'v2p3', label: '3차시 지도안 — 학급 광고 기획사' },
+      { id: 'v2w3', label: '3차시 학습지' },
+      { id: 'v2p4', label: '4차시 지도안 — 퀴즈쇼 제작단' },
+      { id: 'v2w4', label: '4차시 학습지' },
+      { id: 'v2-snippets', label: '프롬프트 스니펫 (2탄)' },
+      { id: 'v2-rubric', label: '평가 루브릭 (2탄)' }
+    ] },
+    { part: '제4부 3탄 · AI 프로젝트 스튜디오', num: '4', color: 'var(--l4)', items: [
+      { id: 'v3-overview', label: '3탄 개요 — 프로젝트 메뉴 5종' },
+      { id: 'v3p1', label: '1차시 지도안 — 기획 회의' },
+      { id: 'v3w1', label: '1차시 학습지 (기획서)' },
+      { id: 'v3p2', label: '2차시 지도안 — 제작 스프린트' },
+      { id: 'v3w2', label: '2차시 학습지 (팀 기록지)' },
+      { id: 'v3p3', label: '3차시 지도안 — 다듬기 공방' },
+      { id: 'v3w3', label: '3차시 학습지 (퇴고·검증)' },
+      { id: 'v3p4', label: '4차시 지도안 — 쇼케이스' },
+      { id: 'v3w4', label: '4차시 학습지 (발표·회고)' },
+      { id: 'v3-snippets', label: '프롬프트 스니펫 (3탄)' },
+      { id: 'v3-rubric', label: '평가 루브릭 (3탄)' }
+    ] },
+    { part: '제5부 수업을 더 풍성하게', num: '5', color: 'var(--l3)', items: [
+      { id: 'faq', label: '학생 돌발질문 FAQ' },
+      { id: 'exhibit', label: '작품 전시 키트' },
+      { id: 'ext-image', label: '확장팩 — 이미지 생성 차시' },
+      { id: 'ext-club', label: '심화활동·동아리 아이디어' }
+    ] },
+    { part: '부록', num: 'A', color: 'var(--text-dim)', items: [
+      { id: 'research', label: '제미나이 조사 정리 (근거 자료)' },
+      { id: 'readme', label: '저장소·웹 교재 안내' },
+      { id: 'wikiguide', label: '온라인 ebook 출시 가이드' }
+    ] }
+  ];
+
+  // 책 순서 평탄화 + 색인 (번호 "2.3" 계산)
+  var bookFlat = [];
+  var bookIndex = {};
+  BOOK.forEach(function (P) {
+    P.items.forEach(function (it, i) {
+      var entry = {
+        id: it.id,
+        label: it.label,
+        no: P.num ? P.num + '.' + (i + 1) : '',
+        part: P.part
+      };
+      bookFlat.push(entry);
+      bookIndex[it.id] = entry;
+    });
+  });
+
+  var READ_KEY = 'edu-read-v1';
+  function readSet() { return store.get(READ_KEY, []); }
+  function markRead(id) {
+    var r = readSet();
+    if (r.indexOf(id) === -1) { r.push(id); store.set(READ_KEY, r); }
+    store.set('edu-last-doc', id);
+  }
 
   var LESSONS = [
     {
@@ -242,19 +317,21 @@
   /* ---------- 사이드바 ---------- */
   function buildSidebar() {
     var sb = $('#sidebar');
-    var html = '<a class="nav-home" href="#/" data-nav-home>🏠 홈 대시보드</a>';
-    Object.keys(CATS).forEach(function (cat) {
-      var docs = DOCS.filter(function (d) { return d.cat === cat; });
-      if (!docs.length) return;
-      html += '<div class="nav-group open" data-cat="' + cat + '">' +
-        '<button class="nav-cat"><span class="dot" style="background:' + CATS[cat].color + '"></span>' +
-        esc(CATS[cat].label) + '<span class="tw">▶</span></button><ul class="nav-items">';
-      docs.forEach(function (d) {
-        html += '<li><a href="#/doc/' + d.id + '" data-doc="' + d.id + '">' + esc(d.nav) + '</a></li>';
+    var read = readSet();
+    var html = '<a class="nav-home" href="#/" data-nav-home>📖 책 표지 · 목차</a>';
+    BOOK.forEach(function (P, pi) {
+      html += '<div class="nav-group open" data-part="' + pi + '">' +
+        '<button class="nav-cat"><span class="dot" style="background:' + P.color + '"></span>' +
+        esc(P.part) + '<span class="tw">▶</span></button><ul class="nav-items">';
+      P.items.forEach(function (it, i) {
+        var no = P.num ? P.num + '.' + (i + 1) : '·';
+        var isRead = read.indexOf(it.id) !== -1;
+        html += '<li><a href="#/doc/' + it.id + '" data-doc="' + it.id + '" class="' + (isRead ? 'visited' : '') + '">' +
+          '<span class="sec-no">' + no + '</span>' + esc(it.label) + '<span class="chk">✓</span></a></li>';
       });
       html += '</ul></div>';
     });
-    html += '<div class="sidebar-note">인쇄 배포용 원본은 저장소의 마크다운 문서입니다. 이 웹 교재는 <code>web/index.html</code>을 브라우저로 열기만 하면 오프라인에서 동작합니다.</div>';
+    html += '<div class="sidebar-note">✓ 는 한 번 이상 연 페이지입니다. 인쇄 배포용 원본은 저장소의 마크다운 문서이며, 이 웹 교재는 <code>web/index.html</code>을 브라우저로 열기만 하면 오프라인에서 동작합니다.</div>';
     sb.innerHTML = html;
     $$('.nav-cat', sb).forEach(function (btn) {
       btn.addEventListener('click', function () { btn.parentElement.classList.toggle('open'); });
@@ -279,81 +356,55 @@
   }
 
   /* ---------- 홈 대시보드 ---------- */
-  var KIT_DESC = {
-    checklist: 'D-7부터 수업 직후까지 단계별 준비 체크박스. 게스트 접속 3회 테스트가 최우선.',
-    trouble: '"로그인 화면만 떠요" 등 12+ 상황별 증상→원인→조치. 수업 흐름을 끊지 않는 전환 순서.',
-    snippets: '전 차시 실습 프롬프트 대본집 — 안내 멘트·예시 답변·지도 포인트·보너스 프롬프트.',
-    rubric: '차시별 관찰 체크리스트, 산출물 3종 루브릭, 자기평가지, 생기부 기록 예시문.',
-    poster: '교실 게시용 5대 안전 수칙 — 구호 형태. 인쇄 버튼으로 바로 출력.',
-    parents: '가정통신문 양식 — 로그인·계정 수집이 없는 수업임을 학부모에게 안내.',
-    faq: '"AI가 살아 있어요?" 등 돌발질문 23개에 대한 20초 즉답 가이드.',
-    exhibit: '작품 명패 인쇄 양식, 전시 운영 3종, 스티커 투표 관람 활동지, 갤러리 워크 진행표.'
-  };
+  /* ---------- 표지(홈) — 책 표지 + 전체 목차 ---------- */
   function renderHome() {
     var el = $('#content');
+    var read = readSet();
+    var total = bookFlat.length;
+    var readCount = bookFlat.filter(function (e) { return read.indexOf(e.id) !== -1; }).length;
+    var pct = total ? Math.round(readCount / total * 100) : 0;
+    var last = store.get('edu-last-doc', null);
+    var lastEntry = last && bookIndex[last] ? bookIndex[last] : null;
+
     var h = '';
-    h += '<div class="home-hero"><h1>20분 만에 이해하는 AI</h1>' +
-      '<p>중학교 1학년 교실에서 <strong>제미나이(Gemini) 게스트 모드(로그인 없이 사용)</strong>만으로 진행하는 생성형 AI 수업 시리즈입니다. ' +
-      '1탄에서 AI를 다루는 기본기를 만들고, 2탄부터는 <strong>AI로 직접 만들어 봅니다</strong> — 이야기·캐릭터·광고·퀴즈, 그리고 팀 프로젝트 작품까지. ' +
-      '준비(체크리스트)부터 수업(지도안·프롬프트 대본)과 평가(루브릭)까지 이 교재 하나로 끝냅니다.</p>' +
-      '<div class="hero-tags"><span>3탄 시리즈 · 20분 × 12회차</span><span>매 차시 산출물 완성</span><span>로그인 · 계정 수집 없음</span><span>모든 차시 플랜 B 포함</span><span>문서 40종 수록</span></div></div>';
+    h += '<div class="home-hero book-cover">' +
+      '<div class="cover-kicker">중학교 1학년 · 제미나이 게스트 모드 · 20분 × 12차시</div>' +
+      '<h1>20분 만에 이해하는 AI</h1>' +
+      '<p class="cover-sub">구경하는 아이에서 만들어 보는 아이로 — 리터러시 기초부터 창작 공방, 팀 프로젝트 스튜디오까지. 로그인 없이, 20분 단위로, 매 차시 산출물이 남는 생성형 AI 수업 교재.</p>' +
+      '<div class="hero-tags"><span>로그인 · 계정 수집 없음</span><span>모든 차시 플랜 B</span><span>학습지 12종 인쇄 지원</span><span>총 ' + total + '페이지</span></div>' +
+      '<div class="cover-actions">' +
+      '<a class="btn cover-btn primary-inv" href="#/doc/preface">📖 머리말부터 읽기</a>' +
+      (lastEntry ? '<a class="btn cover-btn" href="#/doc/' + lastEntry.id + '">↩ 이어서 읽기' + (lastEntry.no ? ' · ' + lastEntry.no : '') + '</a>' : '') +
+      '<button class="btn cover-btn" id="cover-timer">⏱ 수업 타이머</button>' +
+      '</div>' +
+      '<div class="cover-progress"><div class="progress-track"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
+      '<span class="progress-label">' + readCount + ' / ' + total + ' 페이지 읽음 (' + pct + '%)</span></div>' +
+      '</div>';
 
-    h += '<section class="home-section"><h2>🚀 빠른 시작 — 수업이 내일이라면</h2><ol class="step-list">' +
-      '<li><a href="#/doc/checklist">사전준비 체크리스트</a>의 D-1 항목부터 실행 — 학교 네트워크에서 시크릿 창으로 <b>게스트 접속 3회 테스트</b></li>' +
-      '<li><a href="#/doc/plan1">1차시 지도안</a> 정독 — 분 단위 흐름표·발문 스크립트 (20분 수업엔 애드리브 여유가 없습니다)</li>' +
-      '<li><a href="#/doc/snippets">프롬프트 스니펫</a>을 교사 기기에서 1회 사전 실행 — 결과 적절성 확인</li>' +
-      '<li><a href="#/doc/ws1">1차시 학습지</a> 인쇄 — 게스트 모드는 기록이 저장되지 않으므로 <b>학습지가 곧 저장소</b></li></ol></section>';
-
-    var VOLS = [
-      { vol: 1, icon: '📚', title: '1탄 · AI 리터러시 기초', sub: '원리 → 프롬프트 → 검증 → 윤리. AI를 올바르게 다루는 기본기를 만듭니다.' },
-      { vol: 2, icon: '🎨', title: '2탄 · AI 창작 공방', sub: '매 차시 완성품 1개! 창작 3원칙(① 정하는 건 나 ② AI는 재료 공장 ③ 고쳐 써야 내 작품)으로 만들기를 시작합니다. <a href="#/doc/v2-overview">2탄 개요 →</a>' },
-      { vol: 3, icon: '🏗️', title: '3탄 · AI 프로젝트 스튜디오', sub: '모둠(4인)이 4차시 동안 하나의 작품을 기획 → 제작 → 다듬기 → 쇼케이스로 완성합니다. 학급 잡지·캠페인·텍스트 게임 등 <a href="#/doc/v3-overview">프로젝트 메뉴 5종 →</a>' }
-    ];
-    VOLS.forEach(function (V) {
-      h += '<section class="home-section"><h2>' + V.icon + ' ' + esc(V.title) + '</h2>' +
-        '<p style="color:var(--text-dim);margin:-6px 0 14px">' + V.sub + '</p><div class="card-grid">';
-      LESSONS.filter(function (L) { return L.vol === V.vol; }).forEach(function (L) {
-        h += '<a class="card lesson-card ' + L.cls + '" href="#/doc/' + L.doc + '">' +
-          '<div class="card-kicker">' + L.vol + '탄 ' + L.id + '차시 · 20분</div>' +
-          '<h3>' + esc(L.title) + '</h3>' +
-          '<p><b>핵심 질문:</b> ' + esc(L.q) + '</p>' +
-          (L.out ? '<p style="margin-top:6px"><b>산출물:</b> ' + esc(L.out) + '</p>' : '') +
-          '<p style="margin-top:6px">' + esc(L.desc) + '</p>' +
-          '<div class="card-links"><span>지도안</span><span>학습지</span><span>타이머 지원</span></div></a>';
+    h += '<section class="home-section"><h2>목차</h2><div class="book-toc">';
+    BOOK.forEach(function (P) {
+      h += '<div class="toc-part"><span class="dot" style="background:' + P.color + '"></span>' + esc(P.part) + '</div><ol class="toc-pages">';
+      P.items.forEach(function (it, i) {
+        var no = P.num ? P.num + '.' + (i + 1) : '';
+        var isRead = read.indexOf(it.id) !== -1;
+        h += '<li><a href="#/doc/' + it.id + '" class="' + (isRead ? 'visited' : '') + '">' +
+          '<span class="sec-no">' + (no || '·') + '</span><span class="toc-label">' + esc(it.label) + '</span><span class="chk">✓</span></a></li>';
       });
-      h += '</div></section>';
-    });
-
-    h += '<section class="home-section"><h2>🧰 교사 키트</h2><div class="card-grid">';
-    DOCS.filter(function (d) { return d.cat === 'kit'; }).forEach(function (d) {
-      h += '<a class="card" href="#/doc/' + d.id + '"><h3>' + esc(d.nav) + '</h3><p>' + esc(KIT_DESC[d.id] || '') + '</p></a>';
-    });
-    h += '</div></section>';
-
-    h += '<section class="home-section"><h2>🛡 5대 안전 수칙 <small style="font-weight:400;color:var(--text-dim)">— 자세한 내용은 <a href="#/doc/poster">안전수칙 포스터</a></small></h2>' +
-      '<div class="rule-chips"><span>1️⃣ 개인정보 입력 금지 — 진짜 이름 말고 별명</span><span>2️⃣ AI 말은 일단 의심 — 검증 3단계</span>' +
-      '<span>3️⃣ 이상하면 멈추고 선생님께</span><span>4️⃣ 진짜 얼굴 금지 — 나만의 캐릭터 (확장 차시)</span><span>5️⃣ "AI와 함께 만들었어요" 정직한 표시</span></div></section>';
-
-    h += '<section class="home-section"><h2>🔭 확장 · 부록</h2><div class="card-grid">';
-    DOCS.filter(function (d) { return d.cat === 'ext' || d.cat === 'appendix' || d.cat === 'start'; }).forEach(function (d) {
-      var desc = { 'ext-image': '학교 Workspace for Education 계정이 있을 때만 진행하는 선택 5차시 — 이미지 안전 수칙 포함.',
-        'ext-club': '10분 자투리 활동 5종, 교과 연계 프로젝트 4종, 동아리 8차시 로드맵.',
-        research: '게스트 모드를 1순위로 결정한 근거 — 연령·계정 정책, 개인정보 보호법, 출처 링크.',
-        readme: '패키지 전체 파일 맵과 사용 순서 안내.',
-        overview: '설계 철학, 4차시 아크, 운영 시나리오 3종, 안전·법적 고려 요약.' }[d.id] || '';
-      h += '<a class="card" href="#/doc/' + d.id + '"><h3>' + esc(d.nav) + '</h3><p>' + esc(desc) + '</p></a>';
+      h += '</ol>';
     });
     h += '</div></section>';
 
     h += '<div class="home-note">⚠️ <b>2026년 7월 기준.</b> 게스트 모드의 가용 범위·연령 정책은 예고 없이 바뀔 수 있습니다. ' +
-      '수업 전 실제 접속 화면이 최종 기준이며, 이 자료는 법률 자문이 아닙니다. 근거와 출처는 <a href="#/doc/research">부록</a>에 있습니다.</div>';
+      '수업 전 실제 접속 화면이 최종 기준이며, 이 자료는 법률 자문이 아닙니다. 근거와 출처는 <a href="#/doc/research">부록 A.1</a>에 있습니다.</div>';
 
     el.className = 'doc home';
     el.innerHTML = h;
+    var ct = $('#cover-timer');
+    if (ct) ct.addEventListener('click', function () { openTimer(); });
     $('#toc').innerHTML = '';
     $('#pager').innerHTML = '';
     markActive(null);
-    document.title = '20분 만에 이해하는 AI — 중1 제미나이 수업 교재';
+    document.title = '20분 만에 이해하는 AI — 전자책 교재';
     window.scrollTo(0, 0);
   }
 
@@ -371,7 +422,10 @@
     var d = byId[id];
     if (!d) { renderHome(); return; }
     var el = $('#content');
-    var head = '<header class="doc-head"><div class="crumb"><b>' + esc(CATS[d.cat].label) + '</b> · <span>' + esc(d.file) + '</span></div>' +
+    var be = bookIndex[d.id];
+    var head = '<header class="doc-head"><div class="crumb">' +
+      (be ? '<b>' + esc(be.part) + '</b>' + (be.no ? ' · <span class="crumb-no">' + be.no + '</span>' : '') + ' · ' : '') +
+      '<span>' + esc(d.file) + '</span></div>' +
       '<div class="doc-actions">' +
       '<button class="btn primary" data-act="print">🖨 ' + (d.print ? '이 문서 인쇄 (배포용)' : '이 문서 인쇄') + '</button>' +
       (docLessonIdx(d) >= 0 ? '<button class="btn" data-act="timer">⏱ ' + LESSONS[docLessonIdx(d)].vol + '탄 ' + LESSONS[docLessonIdx(d)].id + '차시 타이머 열기</button>' : '') +
@@ -445,6 +499,11 @@
     buildToc();
     buildPager(d);
     markActive(id);
+
+    // 읽음 표시 + 이어 읽기 저장
+    markRead(d.id);
+    var navA = $('#sidebar a[data-doc="' + d.id + '"]');
+    if (navA) navA.classList.add('visited');
     document.title = d.title + ' — 20분 만에 이해하는 AI';
 
     if (pendingQuery) { highlightQuery(pendingQuery); pendingQuery = null; }
@@ -496,11 +555,15 @@
   }
 
   function buildPager(d) {
-    var i = DOCS.indexOf(d);
-    var prev = DOCS[i - 1], next = DOCS[i + 1];
+    // 책 순서(BOOK 평탄화) 기준 이전/다음 페이지
+    var i = -1;
+    for (var k = 0; k < bookFlat.length; k++) if (bookFlat[k].id === d.id) { i = k; break; }
+    if (i === -1) { $('#pager').innerHTML = ''; return; }
+    var prev = bookFlat[i - 1], next = bookFlat[i + 1];
+    function lbl(e) { return (e.no ? e.no + ' · ' : '') + e.label; }
     var h = '';
-    h += prev ? '<a class="prev" href="#/doc/' + prev.id + '"><small>← 이전 문서</small><b>' + esc(prev.title) + '</b></a>' : '<span style="flex:1"></span>';
-    h += next ? '<a class="next" href="#/doc/' + next.id + '"><small>다음 문서 →</small><b>' + esc(next.title) + '</b></a>' : '<span style="flex:1"></span>';
+    h += prev ? '<a class="prev" href="#/doc/' + prev.id + '"><small>← 이전 페이지</small><b>' + esc(lbl(prev)) + '</b></a>' : '<a class="prev" href="#/"><small>← 표지</small><b>책 표지 · 목차</b></a>';
+    h += next ? '<a class="next" href="#/doc/' + next.id + '"><small>다음 페이지 →</small><b>' + esc(lbl(next)) + '</b></a>' : '<a class="next" href="#/"><small>끝 →</small><b>표지로 돌아가기</b></a>';
     $('#pager').innerHTML = h;
   }
 
@@ -560,7 +623,7 @@
       var snippet = (s > 0 ? '…' : '') + it.d.text.substr(s, 130) + '…';
       snippet = esc(snippet).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), function (m) { return '<mark>' + m + '</mark>'; });
       h += '<a class="search-item" href="#/doc/' + it.d.id + '" data-q="' + esc(q) + '">' +
-        '<div class="si-doc">' + esc(CATS[it.d.cat].label) + ' › ' + esc(it.d.title) + ' <span style="color:var(--text-dim);font-weight:400">(' + it.count + '곳)</span></div>' +
+        '<div class="si-doc">' + esc((bookIndex[it.d.id] ? bookIndex[it.d.id].part + (bookIndex[it.d.id].no ? ' ' + bookIndex[it.d.id].no : '') : '')) + ' › ' + esc(it.d.title) + ' <span style="color:var(--text-dim);font-weight:400">(' + it.count + '곳)</span></div>' +
         '<div class="si-snippet">' + snippet + '</div></a>';
     });
     res.innerHTML = h;

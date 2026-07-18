@@ -375,3 +375,46 @@ li:has(> .task-check:checked) { color: var(--text-dim); text-decoration: line-th
   .doc a { color: #000; text-decoration: none; }
   .home-hero { color: #000; background: #eee; box-shadow: none; }
 }
+
+/* ---------- ebook 목차·표지 (위키독스식) ---------- */
+.sec-no {
+  display: inline-block; min-width: 30px; margin-right: 4px;
+  color: var(--text-dim); font-size: 11.5px; font-variant-numeric: tabular-nums;
+}
+#sidebar .nav-items a { display: flex; align-items: baseline; gap: 2px; }
+#sidebar .nav-items a .chk, .toc-pages a .chk { margin-left: auto; opacity: 0; color: var(--accent2); font-weight: 700; }
+#sidebar .nav-items a.visited .chk, .toc-pages a.visited .chk { opacity: 1; }
+#sidebar .nav-items a.visited { color: var(--text); }
+
+.cover-kicker { font-size: 13px; font-weight: 700; letter-spacing: .05em; opacity: .85; margin-bottom: 10px; }
+.cover-sub { max-width: 44em; }
+.cover-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.cover-btn {
+  background: rgba(255, 255, 255, .14); border-color: rgba(255, 255, 255, .45); color: #fff; font-weight: 700;
+}
+.cover-btn:hover { background: rgba(255, 255, 255, .26); border-color: #fff; color: #fff; }
+.cover-btn.primary-inv { background: #fff; color: var(--accent); border-color: #fff; }
+.cover-btn.primary-inv:hover { filter: brightness(.95); color: var(--accent); }
+.cover-progress { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+.progress-track {
+  flex: 1; max-width: 340px; height: 8px; border-radius: 99px;
+  background: rgba(255, 255, 255, .25); overflow: hidden;
+}
+.progress-fill { height: 100%; background: #fff; border-radius: 99px; }
+.progress-label { font-size: 12.5px; opacity: .9; }
+
+.book-toc { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: 6px 0; }
+.toc-part {
+  display: flex; align-items: center; gap: 9px;
+  font-weight: 800; font-size: 14px; padding: 12px 18px 6px;
+}
+.toc-part .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; }
+.toc-pages { list-style: none; margin: 0 0 6px; padding: 0; }
+.toc-pages a {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 6px 18px 6px 44px; color: var(--text); text-decoration: none; font-size: 14px;
+}
+.toc-pages a:hover { background: var(--surface2); }
+.toc-pages a .sec-no { min-width: 34px; }
+.toc-pages a .toc-label { flex: 1; }
+.crumb-no { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
