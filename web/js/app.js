@@ -71,7 +71,8 @@
     { part: '부록', num: 'A', color: 'var(--text-dim)', items: [
       { id: 'research', label: '제미나이 조사 정리 (근거 자료)' },
       { id: 'readme', label: '저장소·웹 교재 안내' },
-      { id: 'wikiguide', label: '온라인 ebook 출시 가이드' }
+      { id: 'wikiguide', label: '온라인 ebook 출시 가이드' },
+      { id: 'bookintro', label: '책 소개·장 표지 문구 모음' }
     ] }
   ];
 

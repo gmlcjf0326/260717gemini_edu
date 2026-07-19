@@ -62,6 +62,7 @@ const DOCS = [
   { id: 'ext-club',    cat: 'ext',     nav: '심화활동·동아리 아이디어', file: 'extensions/심화활동-및-동아리-아이디어.md' },
   { id: 'research',    cat: 'appendix', nav: '제미나이 조사 정리',   file: 'appendix/제미나이-조사-정리.md' },
   { id: 'wikiguide',   cat: 'ebook',   nav: '온라인 ebook 출시 가이드', file: 'ebook/99-위키독스-출시-가이드.md' },
+  { id: 'bookintro',   cat: 'ebook',   nav: '책 소개·장 표지 문구 모음', file: 'ebook/02-책-소개와-장-표지-문구.md' },
 ];
 
 marked.setOptions({ gfm: true, breaks: false });
